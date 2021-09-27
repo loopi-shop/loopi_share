@@ -25,12 +25,6 @@ class ShareImageWithSticker extends StatelessWidget {
                 backgroundVideo = await imagePicker.getVideo(
                   source: ImageSource.gallery,
                 );
-                // FilePickerResult? result =
-                //     await FilePicker.platform.pickFiles();
-                // print(
-                //   result!.files.first.path,
-                // );
-                print(backgroundVideo!.path);
               },
               child: Text("Get Video"),
             ),
@@ -44,11 +38,12 @@ class ShareImageWithSticker extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                await LoopiShare.shareInstagram(
-                  videoPath: backgroundVideo!.path,
-                  stickerPath: stickerImage!.path,
-                  shareType: LoopiShareType.image,
-                );
+                if (backgroundVideo != null && stickerImage != null) {
+                  await LoopiShare.shareInstagram(
+                    videoPath: backgroundVideo!.path,
+                    stickerPath: stickerImage!.path,
+                  );
+                }
               },
               child: Text("Send to Instagram"),
             ),
