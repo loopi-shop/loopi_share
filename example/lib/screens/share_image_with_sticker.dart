@@ -39,10 +39,11 @@ class ShareImageWithSticker extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 if (backgroundVideo != null && stickerImage != null) {
-                  await LoopiShare.shareInstagram(
+                  String? result = await LoopiShare.shareInstagram(
                     videoPath: backgroundVideo!.path,
                     stickerPath: stickerImage!.path,
                   );
+                  print(result);
                 }
               },
               child: Text("Send to Instagram"),

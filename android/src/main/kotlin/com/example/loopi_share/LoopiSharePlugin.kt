@@ -36,13 +36,13 @@ class LoopiSharePlugin : FlutterPlugin, MethodCallHandler {
 
         if (call.method == "shareInstagramImageStoryWithSticker") {
 
-            val videoPath: String? = call.argument("backgroundPath")
+            val videoPath: String? = call.argument("videoPath")
             val stickerPath: String? = call.argument("stickerPath")
 
             if (videoPath != null && stickerPath != null) {
                 val videoUri = getUri(videoPath)
                 val stickerUri = getUri(stickerPath)
-                stories(videoUri, stickerUri)
+                shareInstagramImageStoryWithSticker(videoUri, stickerUri)
 
                 result.success("Send video and sticker with success")
                 return
@@ -62,7 +62,7 @@ class LoopiSharePlugin : FlutterPlugin, MethodCallHandler {
         )
     }
 
-    private fun stories(urlVideo: Uri, uriSticker: Uri) {
+    private fun shareInstagramImageStoryWithSticker(urlVideo: Uri, uriSticker: Uri) {
 
         val storiesIntent = Intent("com.instagram.share.ADD_TO_STORY").apply {
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
