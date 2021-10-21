@@ -38,6 +38,8 @@ public class SwiftLoopiSharePlugin: NSObject, FlutterPlugin {
         }
 
         let clipBoard = args["clipBoard"] as? String
+        
+        let waitInSeconds = args["waitInSeconds"] as? Double
                 
         let instagramUrl = URL(string: "instagram-stories://share")
         
@@ -85,10 +87,10 @@ public class SwiftLoopiSharePlugin: NSObject, FlutterPlugin {
             
             UIApplication.shared.open(instagramUrl!, completionHandler: { (success) in
                 if(clipBoard != ""){
-                    Thread.sleep(forTimeInterval: 2);
+                    Thread.sleep(forTimeInterval: waitInSeconds ?? 0);
                     let pasteBoard = UIPasteboard.general
                     pasteBoard.string = clipBoard
-                    print(">>>>>>>>>>>>>>>>>>>> Open url : \(success)")
+                    print(">>>>>>>>>>>>>>>>>>>> Open url : \(success), waiting : \(waitInSeconds ?? 0) seconds")
                 }
            })
             

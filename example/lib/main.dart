@@ -117,6 +117,7 @@ class ShareImageWithSticker extends StatelessWidget {
                   String? result = await LoopiShare.shareInstagram(
                     videoPath: backgroundVideo!.path,
                     stickerPath: stickerImage!.path,
+                    waitInSeconds: 3.0,
                     clibBoardIos:
                         "Use that to put an information available in clipboard on IOS devices",
                   );

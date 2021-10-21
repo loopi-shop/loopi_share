@@ -10,8 +10,9 @@ class LoopiShare {
     required String videoPath,
     required String stickerPath,
     String? clibBoardIos,
+    double? waitInSeconds,
   }) async {
-    Map<String, String> args = {
+    Map<String, dynamic> args = {
       "videoPath": videoPath,
       "stickerPath": stickerPath,
     };
@@ -19,6 +20,7 @@ class LoopiShare {
     if (Platform.isIOS) {
       args.addAll({
         "clipBoard": clibBoardIos ?? "",
+        "waitInSeconds": waitInSeconds ?? 0,
       });
     }
 
