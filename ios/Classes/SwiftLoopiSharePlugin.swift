@@ -36,8 +36,9 @@ public class SwiftLoopiSharePlugin: NSObject, FlutterPlugin {
             print("Message From Switf: videoPath or stickerPath as nil")
             return
         }
-        
-        
+
+        let clipBoard = args["clipBoard"] as? String
+                
         let instagramUrl = URL(string: "instagram-stories://share")
         
         guard UIApplication.shared.canOpenURL(instagramUrl! as URL) else {
@@ -65,8 +66,10 @@ public class SwiftLoopiSharePlugin: NSObject, FlutterPlugin {
             let stickerUrl:URL? = NSURL(fileURLWithPath: stickerPath!) as URL
             let sticker = try NSData(contentsOfFile: stickerUrl!.path, options: .mappedIfSafe)
             
-            let boardItems = ["com.instagram.sharedSticker.backgroundVideo": background as Any,
-                              "com.instagram.sharedSticker.stickerImage": sticker as Any ]
+            let boardItems = [
+                "com.instagram.sharedSticker.backgroundVideo": background as Any,
+                "com.instagram.sharedSticker.stickerImage": sticker as Any
+            ]
             let pasteBoardItems = [boardItems]
             
             
@@ -79,7 +82,16 @@ public class SwiftLoopiSharePlugin: NSObject, FlutterPlugin {
             
             let option: [UIPasteboard.OptionsKey: Any] = [.expirationDate: Date().addingTimeInterval(60 * 5)]
             UIPasteboard.general.setItems(pasteBoardItems, options: option)
-            UIApplication.shared.open(instagramUrl!)
+            
+            UIApplication.shared.open(instagramUrl!, completionHandler: { (success) in
+                if(clipBoard != ""){
+                    Thread.sleep(forTimeInterval: 2);
+                    let pasteBoard = UIPasteboard.general
+                    pasteBoard.string = clipBoard
+                    print(">>>>>>>>>>>>>>>>>>>> Open url : \(success)")
+                }
+           })
+            
             self.result?("Success")
             return
         }
