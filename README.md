@@ -1,15 +1,22 @@
-# loopi_share
+# Loopi Share
 
-A new flutter plugin project.
+A simple way to share Instagram stories as an embedded feature within the Flutter application. 
 
-## Getting Started
+## Introduction
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+Words on both platforms **Android** and **IOS**
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Provide a simple way to share and story with a simple video and a sticker.
+
+Also have a special feature for IOS systems, that providers the clipboard of a simple text after Instagram screen opens.
+
+## Usage
+
+
+## Android Configurations
+
+No need to add any configuration, all the permission configurations are already at [AndroidManifest.xml](android/src/main/AndroidManifest.xml)
+
+## IOS Configurations
+
 
